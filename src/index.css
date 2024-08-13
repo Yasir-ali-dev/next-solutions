@@ -1,13 +1,136 @@
-body {
+*,::after,::before{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+li{
+  font-size: 1rem;
+}
+body {
+  font-family: 'Roboto';
+}
+
+.highlighted-text {
+  position: relative;
+  color: #1c1c26;
+}
+
+.highlighted-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;
+  height: 0.25em;
+  background-color: #ff8080;
+  z-index: -1;
+  border-radius: 0.25em;
+}
+
+.highlighted-green-text {
+  position: relative;
+  color: #1c1c26;
+}
+
+.medium-purple-color{
+  color: #86469C;
+}
+.light-purple-color{
+  color: #AD88C6;
+}
+
+
+.cursive-fonts{
+  font-family: 'Pacifico', cursive;
+}
+.roboto {
+font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.highlighted-green-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.4em;
+  height: 0.7em;
+  background-color: #6bfc8a;
+  z-index: -1;
+  border-radius: 0.25em;
+}
+.highlighted-blue-text {
+  position: relative;
+  color: #1c1c26;
+}
+
+.highlighted-blue-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.4em;
+  height: 0.2em;
+  background-color: #86469C;
+  z-index: -1;
+  border-radius: 0.25em;
+}
+
+.btn-custom {
+  background-color: #141E61; /* Custom background color */
+  border-radius:4px ;     /* Custom border color */
+  color: white;
+  border: none;              /* Custom text color */
+  padding: 5px 13px ;
+}
+
+.btn-custom-light {
+  background-color:white ; /* Custom background color */
+  border-radius:4px ;     /* Custom border color */
+  color:  #141E61;
+  border:3px solid #141E61;              /* Custom text color */
+  padding: 3px 13px ;
+}
+
+.btn-custom-light:hover {
+  background-color: #01093a; /* Darker shade on hover */
+  color: white;
+  border: 3px solid #01093a;
+}
+
+.btn-custom:hover {
+  background-color: #01093a; /* Darker shade on hover */
+}
+
+
+.bg-color{
+  background-color: #141E61;
+}
+
+.circle-img {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  font-family: 'Caveat', cursive; /* Use a font similar to the one in the image */
+  color: #1c1c26; /* Dark text color */
+  font-weight: normal;
+  padding: 0.5em 1em;
+}
+
+.circle-img::before {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background-color: #FFF9D0; /* Pinkish background color */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding: 0.5em; /* Adjust this for the size of the circle */
+}
+
+ul{
+  text-decoration: none;
+  list-style-type: none;
 }
