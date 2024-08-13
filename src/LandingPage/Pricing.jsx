@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Container } from 'react-bootstrap';
+import {  Card, Container } from 'react-bootstrap';
 import "../index.css";
 
 const pricingPackages =["Basic","Standard","Premium"];

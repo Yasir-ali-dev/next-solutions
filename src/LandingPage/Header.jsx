@@ -1,4 +1,3 @@
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,7 +15,7 @@ function Header() {
         </Navbar.Brand>
         <Navbar.Collapse className='d-flex justify-content-evenly' id="navbarScroll">
           <Nav
-            className="my-2 flex my-lg-0"
+            className="my-1 flex my-lg-0"
             style={{ maxHeight: '100px' }}
           >
             <Nav.Link href="#action1">Home</Nav.Link>

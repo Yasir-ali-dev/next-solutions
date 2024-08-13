@@ -19,7 +19,7 @@ const NewComponents = () => {
         })}
         </div>  
         <div className='d-flex'>
-            <a href="#" className='ms-auto px-5 m-3 text-uppercase link-underline-light'>view all <span>&#8594;</span></a>
+            <a href="#hero" className='ms-auto px-5 m-3 text-uppercase link-underline-light'>view all <span>&#8594;</span></a>
         </div>
     </Container>
   )
