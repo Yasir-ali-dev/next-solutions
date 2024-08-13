@@ -11,7 +11,7 @@ const Footer = () => {
         </h3>
         <div className='d-flex gap-5 justify-content-between flex-wrap'>
             <div className='col-6 col-lg-6 col-sm-12 col-xs-12 d-flex gap-2 justify-content-between flex-wrap'>
-                <ul >
+                <ul className='list-unstyled'>
                     <li className='fs-4'>Community</li>
                     <li>Tutorials</li>
                     <li>Documentation</li>
@@ -21,7 +21,7 @@ const Footer = () => {
                     <li>Leetcode</li>
                     <li>Slack</li>
                 </ul>
-                <ul>
+                <ul className='list-unstyled'>
                     <li className='fs-4'>Services</li>
                     <li>Support</li>
                     <li>Upgrade</li>
@@ -31,7 +31,7 @@ const Footer = () => {
                     <li>Become a Partner</li>
                     <li>Hosting</li>
                 </ul>
-                <ul>
+                <ul className='list-unstyled'>
                     <li className='fs-4'>About us</li>
                     <li>Our Company</li>
                     <li>Brand</li>

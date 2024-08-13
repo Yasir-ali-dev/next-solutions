@@ -16,6 +16,10 @@ body {
   color: #1c1c26;
 }
 
+.price{
+  color: #86469C;
+  font-size: 4rem;
+}
 .highlighted-text::before {
   content: '';
   position: absolute;
@@ -130,7 +134,3 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   padding: 0.5em; /* Adjust this for the size of the circle */
 }
 
-ul{
-  text-decoration: none;
-  list-style-type: none;
-}

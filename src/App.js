@@ -9,6 +9,7 @@ import AllTechPlatform from "./LandingPage/AllTechPlatform";
 import Growth from "./LandingPage/Growth";
 import Footer from "./LandingPage/Footer";
 import Services from "./LandingPage/Services";
+import Pricing from "./LandingPage/Pricing";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
       <VideoComponent />
       <AllTechPlatform />
       <Growth />
+      <Pricing />
       <Footer />
     </>
   );
