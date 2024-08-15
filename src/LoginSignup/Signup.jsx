@@ -11,7 +11,7 @@ const Signup = () => {
     <div className='sign-up-image'></div> 
     <div className='sign-up-content d-flex flex-column align-items-center justify-content-center'>
         <h1 className='display-5 text-center cursive-fonts'>
-            <p className='highlighted-blue-text'>{isSignUp ? "Sign Up" : "Login"}</p> 
+            <p className='medium-purple-color'>{isSignUp ? "Sign Up" : "Login"}</p> 
         </h1>
             {isSignUp ? <SignUpComponent/> : <LoginComponent/>}
         <button 

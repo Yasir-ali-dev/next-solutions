@@ -4,12 +4,12 @@ import "../index.css";
 const links=["github","gmail","leetcode","linkedin"];
 const Footer = () => {
   return (
-    <Container className='roboto' fluid>
-        <Container>
-        <h3 className='lead text-center fs-2 cursive-fonts py-5' >Next {" "}
+    <div className='roboto' >
+        <div className='px-5'>
+        <h3 className='lead text-center fs-2 cursive-fonts pt-5 pb-3' >Next {" "}
             <span className='highlighted-green-text'>Solutions</span> 
         </h3>
-        <div className='d-flex gap-5 justify-content-between flex-wrap'>
+        <div className='d-flex gap-5 px-5 justify-content-between flex-wrap'>
             <div className='col-6 col-lg-6 col-sm-12 col-xs-12 d-flex gap-2 justify-content-between flex-wrap'>
                 <ul className='list-unstyled'>
                     <li className='fs-4'>Community</li>
@@ -70,7 +70,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        </Container>
+        </div>
         <h3 className='fs-6 text-center text-light py-3 bg-color'>
             <i>
             all rights reserved @ <span className='cursive-fonts'>
@@ -78,7 +78,7 @@ const Footer = () => {
             </span>
             </i>
         </h3>
-    </Container>
+    </div>
   )
 }
 export default Footer;

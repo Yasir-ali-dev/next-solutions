@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.serif{
+  font-family: 'Roboto', sans-serif;
+}
+.ubuntu{
+  font-family: 'Ubuntu', sans-serif;
+}
+
 li{
   font-size: 1rem;
 }
@@ -11,6 +18,9 @@ body {
   font-family: 'Roboto';
 }
 
+label{
+  font-size: .79rem;
+}
 .highlighted-text {
   position: relative;
   color: #1c1c26;
@@ -37,6 +47,7 @@ body {
   color: #1c1c26;
 }
 
+/* ----------------------------  colors */
 .medium-purple-color{
   color: #86469C;
 }
@@ -130,7 +141,6 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   font-weight: normal;
   padding: 0.5em 1em;
 }
-
 .circle-img::before {
   content: '';
   position: absolute;
@@ -149,6 +159,9 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 /*  ------------------------------ forms */
 .form-width {
   width: 300px; /* Adjust width here */
+  border: 1px solid rgb(221, 244, 252);
+  border-radius: 5px;
+  background-color: rgb(249, 251, 252);
 }
 
 
@@ -161,9 +174,9 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   width: 50%; /* 50% width */
   height: 100vh; /* Full viewport height */
   background-image: url("../public/signup/login_signup.jpg");
-  background-size: cover; /* Cover the whole element */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating */
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 775.98px) {
@@ -172,7 +185,32 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   }
 }
 
-
 .sign-up-content{
   flex: 1;
+}
+
+/* Page Not Found */
+.page-not-found-img{
+  position: fixed;
+  top: 0%;
+  left: 0;
+  width: 100%; /* 50% width */
+  height: 100vh; /* Full viewport height */
+  background-image: url("../public/pagenotfound/404.png");
+  background-size:contain; 
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.star {
+  color: red;
+  font-size: 1.2rem;
+}
+.form-heading-color{
+  background-color: #D1E9F6;
+  
+}
+
+.form-text{
+  font-size: x-small;
 }
