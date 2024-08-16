@@ -1,13 +1,6 @@
 import { Button } from "bootstrap";
-import React, { useState } from "react";
-import {
-  ButtonGroup,
-  Card,
-  Container,
-  Form,
-  Image,
-  Pagination,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Card, Container, Form, Image, Pagination } from "react-bootstrap";
 
 const arrayOfEmployees = [
   {
@@ -155,60 +148,205 @@ const arrayOfEmployees = [
     is_sales_representative: true,
     is_delivery_man: false,
   },
+  {
+    id: 6,
+    hired_date: "2022-07-18",
+    name: "Emily Clark",
+    birth_date: "1995-10-25",
+    religion: "Christianity",
+    cnic: "56789-0123456-7",
+    guardian: "Thomas Clark",
+    gender: "Female",
+    nationality: "British",
+    city: "London",
+    state: "London",
+    email: "emily.clark@example.com",
+    zipcode: "E1 6AN",
+    phone: "555-2345",
+    current_address: "123 Abbey Rd, London, E1 6AN",
+    permanent_address: "456 Baker St, London, E1 6AR",
+    designation: "UX Designer",
+    department_name: "Design",
+    employee_type: "Full-time",
+    location_name: "Headquarters",
+    work_calander: "Monday to Friday",
+    payroll: "Monthly",
+    working_status: "Active",
+    employee_grade: "B",
+    supervisor: "Charles Green",
+    is_sales_representative: false,
+    is_delivery_man: false,
+  },
+  {
+    id: 7,
+    hired_date: "2021-02-10",
+    name: "Carlos Gomez",
+    birth_date: "1987-06-17",
+    religion: "Christianity",
+    cnic: "67890-1234567-8",
+    guardian: "Maria Gomez",
+    gender: "Male",
+    nationality: "Mexican",
+    city: "Mexico City",
+    state: "CDMX",
+    email: "carlos.gomez@example.com",
+    zipcode: "01000",
+    phone: "555-6789",
+    current_address: "789 Reforma Ave, Mexico City, CDMX 01000",
+    permanent_address: "101 Insurgentes Ave, Mexico City, CDMX 01001",
+    designation: "Backend Developer",
+    department_name: "Engineering",
+    employee_type: "Full-time",
+    location_name: "Branch Office",
+    work_calander: "Monday to Friday",
+    payroll: "Monthly",
+    working_status: "Active",
+    employee_grade: "A",
+    supervisor: "Luisa Martinez",
+    is_sales_representative: false,
+    is_delivery_man: false,
+  },
+  {
+    id: 8,
+    hired_date: "2023-01-29",
+    name: "Sophia Wang",
+    birth_date: "1998-12-09",
+    religion: "Buddhism",
+    cnic: "78901-2345678-9",
+    guardian: "James Wang",
+    gender: "Female",
+    nationality: "Chinese",
+    city: "Beijing",
+    state: "Beijing",
+    email: "sophia.wang@example.com",
+    zipcode: "100010",
+    phone: "555-3456",
+    current_address: "234 Tsinghua Rd, Beijing, 100010",
+    permanent_address: "567 Peking St, Beijing, 100012",
+    designation: "Data Scientist",
+    department_name: "Data Science",
+    employee_type: "Full-time",
+    location_name: "Branch Office",
+    work_calander: "Monday to Friday",
+    payroll: "Monthly",
+    working_status: "Active",
+    employee_grade: "A",
+    supervisor: "Yi Zhang",
+    is_sales_representative: false,
+    is_delivery_man: false,
+  },
+  {
+    id: 9,
+    hired_date: "2020-11-11",
+    name: "Ahmed Khan",
+    birth_date: "1982-03-22",
+    religion: "Islam",
+    cnic: "89012-3456789-0",
+    guardian: "Fatima Khan",
+    gender: "Male",
+    nationality: "Pakistani",
+    city: "Karachi",
+    state: "Sindh",
+    email: "ahmed.khan@example.com",
+    zipcode: "75500",
+    phone: "555-4567",
+    current_address: "123 Clifton St, Karachi, Sindh 75500",
+    permanent_address: "456 DHA Rd, Karachi, Sindh 75501",
+    designation: "HR Specialist",
+    department_name: "Human Resources",
+    employee_type: "Full-time",
+    location_name: "Headquarters",
+    work_calander: "Monday to Friday",
+    payroll: "Monthly",
+    working_status: "Active",
+    employee_grade: "B",
+    supervisor: "Ayesha Ali",
+    is_sales_representative: false,
+    is_delivery_man: false,
+  },
+  {
+    id: 10,
+    hired_date: "2018-06-14",
+    name: "Hiroshi Tanaka",
+    birth_date: "1979-09-30",
+    religion: "Shinto",
+    cnic: "90123-4567890-1",
+    guardian: "Yuki Tanaka",
+    gender: "Male",
+    nationality: "Japanese",
+    city: "Tokyo",
+    state: "Tokyo",
+    email: "hiroshi.tanaka@example.com",
+    zipcode: "100-0001",
+    phone: "555-7891",
+    current_address: "123 Shibuya St, Tokyo, 100-0001",
+    permanent_address: "456 Roppongi St, Tokyo, 100-0002",
+    designation: "Marketing Manager",
+    department_name: "Marketing",
+    employee_type: "Full-time",
+    location_name: "Branch Office",
+    work_calander: "Monday to Friday",
+    payroll: "Monthly",
+    working_status: "Active",
+    employee_grade: "A",
+    supervisor: "Takashi Yamamoto",
+    is_sales_representative: false,
+    is_delivery_man: false,
+  },
 ];
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState(arrayOfEmployees);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(2);
-  const totalPages = Math.ceil(employees.length / itemsPerPage);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const totalPages = Math.max(1, Math.ceil(employees.length / itemsPerPage)); // Ensure
+  const [paginatedItems, setPaginatedItems] = useState([]);
 
-  console.log(totalPages);
   const handleItemsPerPage = (event) => {
     setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1);
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  // Get items for the current page
-  const paginatedItems = employees.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+
+  useEffect(() => {
+    setPaginatedItems(
+      employees.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    );
+  }, [itemsPerPage, employees, currentPage]);
 
   const handleSelectChange = (event) => {
-    if (event.target.value === "ascending") {
-      setEmployees(
-        employees.sort((a, b) => {
+    const order = event.target.value;
+
+    if (order === "ascending") {
+      setEmployees((prevEmployees) =>
+        [...prevEmployees].sort((a, b) => {
           const nameA = a.name.toUpperCase();
           const nameB = b.name.toUpperCase();
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
           return 0;
         })
       );
-    } else if (event.target.value === "descending") {
-      setEmployees(
-        employees.sort((a, b) => {
+    } else if (order === "descending") {
+      setEmployees((prevEmployees) =>
+        [...prevEmployees].sort((a, b) => {
           const nameA = a.name.toUpperCase();
           const nameB = b.name.toUpperCase();
-          if (nameA > nameB) {
-            return -1;
-          }
-          if (nameA < nameB) {
-            return 1;
-          }
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
           return 0;
         })
       );
-    } else if (event.target.value === "clear") {
+    } else if (order === "clear") {
       setEmployees(arrayOfEmployees);
     }
+    setCurrentPage(1); // Reset to the first page when sorting changes
   };
 
   let paginationItems = [];
@@ -243,9 +381,9 @@ const EmployeeList = () => {
             value={itemsPerPage}
             onChange={handleItemsPerPage}
           >
-            <option value={`3`}>3</option>
-            <option value="4">4</option>
-            <option value="10">10</option>
+            <option value={`3`}>3 items per page </option>
+            <option value="5">5 items per page </option>
+            <option value="10">10 items per page</option>
           </Form.Select>
         </div>
         <button type="buttin" className="btn-custom">
@@ -253,7 +391,7 @@ const EmployeeList = () => {
         </button>
       </div>
 
-      <div className="d-flex gap-3 flex-wrap py-3">
+      <div className="d-flex gap-3 justify-content-between flex-wrap py-3">
         {paginatedItems.map((employee, index) => {
           return (
             <Card key={index} style={{ width: "20rem" }}>
@@ -275,7 +413,7 @@ const EmployeeList = () => {
           );
         })}
       </div>
-      <Pagination size="lg">{paginationItems}</Pagination>
+      <Pagination size="sm">{paginationItems}</Pagination>
     </Container>
   );
 };
