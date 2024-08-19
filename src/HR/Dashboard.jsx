@@ -16,9 +16,9 @@ const Dashboard = () => {
         <Navbar className='roboto form-heading-color px-3' >
             <Navbar.Brand>Human Resource</Navbar.Brand>
             <Nav className="d-flex px-5 justify-content-center gap-4" >
-                <Link className='router-link fw-bold'> Employee Management</Link>
-                <Link className='router-link'>Payroll</Link>
-                <Link className='router-link'>Attendence</Link>
+                <Link className='router-link' to={"/hr/employeeTypes"}>  Employee Types</Link>
+                <Link className='router-link' to={"/hr/employeeGrades"}>Employee Grades</Link>
+                <Link className='router-link' to={"/hr/workCalenders"}>Work Calenders</Link>
             </Nav>
         </Navbar>
         <div className='d-flex flex-column'> 

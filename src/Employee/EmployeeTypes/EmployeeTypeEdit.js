@@ -26,9 +26,12 @@ const EmployeeTypeEdit = () => {
       }
       setTimeout(() => {
         navigate("/hr/employeeTypes/");
-      }, 2000);
+      }, 2500);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
+      setTimeout(() => {
+        navigate("/hr/employeeTypes/");
+      }, 2500);
     }
   };
 
@@ -42,9 +45,12 @@ const EmployeeTypeEdit = () => {
       }
       setTimeout(() => {
         navigate("/hr/employeeTypes/");
-      }, 2000);
+      }, 2500);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
+      setTimeout(() => {
+        navigate("/hr/employeeTypes/");
+      }, 2500);
     }
   };
 

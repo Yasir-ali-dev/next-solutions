@@ -168,6 +168,21 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 }
 
 
+.form-width-sm{
+  width: 290px; /* Adjust width here */
+  border: 1px solid rgb(221, 244, 252);
+  border-radius: 5px;
+  background-color: rgb(249, 251, 252);
+}
+
+.form-width-xs{
+  width: 260px; /* Adjust width here */
+  border: 1px solid rgb(221, 244, 252);
+  border-radius: 5px;
+  background-color: rgb(249, 251, 252);
+}
+
+
 /* -------------------------------- sign up */
 .sign-up-container{
   display: flex;
