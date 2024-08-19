@@ -494,3 +494,5 @@ export const employeeTypes = [
   "Leased",
   "At-will",
 ];
+
+export const employeeGrades = ["high-level", "middle-level", "low-level"];

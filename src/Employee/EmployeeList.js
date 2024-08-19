@@ -93,7 +93,10 @@ const EmployeeList = () => {
     <div className="ubuntu">
       <div className="py-1 px-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">Employees</h4>
-        <Link to="/hr/employeeform" className="router-link-btn btn-custom">
+        <Link
+          to="/hr/employees/employeeform"
+          className="router-link-btn btn-custom"
+        >
           Create Employee
         </Link>
       </div>
