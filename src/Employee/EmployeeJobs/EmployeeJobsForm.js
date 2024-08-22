@@ -1,35 +1,33 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { employeeGrades } from "../../utils/employeeData";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import BackButton from "../../components/BackButton";
 
-const EmployeeGradeForm = () => {
+const EmployeeJobsForm = () => {
   const initialValues = {
-    employee_grade: "low-level",
+    job: "",
     description: "",
   };
   const navigate = useNavigate();
 
-  const handleEmployeeTypeForm = async (values) => {
+  const handleEmployeeJobForm = async (values) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/employeeGrades",
+        "http://localhost:8080/api/v1/employeeJobs",
         values
       );
       if (response.status === 201) {
-        toast.success(
-          `${response.data.newEmployeeGrade.employee_grade} employee scale is created `
-        );
+        toast.success(`${response.data.newEmployeeJobs.job} job is created `);
       }
       setTimeout(() => {
-        navigate("/hr/employeeGrades/");
+        navigate("/hr/employeeJobs/");
       }, [2500]);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
       setTimeout(() => {
-        navigate("/hr/employeeGrades/");
+        navigate("/hr/employeeJobs/");
       }, [3000]);
     }
   };
@@ -43,37 +41,31 @@ const EmployeeGradeForm = () => {
         initialValues={initialValues}
         validate={(values) => {
           const errors = {};
-          if (!values.employee_grade) {
-            errors.employee_grade = "employee_grade type is required";
+          if (!values.job) {
+            errors.job = "employee_job is required";
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          handleEmployeeTypeForm(values);
+          handleEmployeeJobForm(values);
+          setSubmitting(true);
         }}
       >
         {({ isSubmitting }) => (
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="employeeType">
-                  <sup className="star">*</sup>Employee Scale
+                <label htmlFor="job">
+                  <sup className="star">*</sup>Employee Job
                 </label>
                 <Field
-                  component="select"
-                  name="employee_grade"
-                  className="px-1 mx-2 form-width py-2"
-                >
-                  {employeeGrades.map((value, index) => {
-                    return (
-                      <option value={value} key={index}>
-                        {value}
-                      </option>
-                    );
-                  })}
-                </Field>
+                  type="text"
+                  name="job"
+                  placeholder="Enter your job "
+                  className="py-2 px-1 mx-2 form-width"
+                />
                 <ErrorMessage
-                  name="employee_grade"
+                  name="job"
                   component="div"
                   className="text-danger"
                 />
@@ -94,13 +86,13 @@ const EmployeeGradeForm = () => {
                 className="btn-custom my-1 mt-2"
                 disabled={isSubmitting}
               >
-                Create Employee Scale
+                Create Employee Job
               </button>
-              <Toaster position="top-right" />
+              <Toaster position="top-center" />
               <Link
                 className="btn-custom mt-2"
                 style={{ textDecoration: "none", height: "30px" }}
-                to={`/hr/employeeGrades/`}
+                to={`/hr/employeeJobs/`}
               >
                 Back
               </Link>
@@ -112,4 +104,4 @@ const EmployeeGradeForm = () => {
   );
 };
 
-export default EmployeeGradeForm;
+export default EmployeeJobsForm;

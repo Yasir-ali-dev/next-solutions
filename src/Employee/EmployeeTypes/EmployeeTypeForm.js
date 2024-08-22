@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { employeeTypes } from "../../utils/employeeData";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const EmployeeTypeFrom = () => {
@@ -35,7 +35,7 @@ const EmployeeTypeFrom = () => {
   };
 
   return (
-    <div className="ubuntu">
+    <div className="ubuntu bg" style={{ height: "100vh" }}>
       <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">Employee Type Form</h4>
       </div>
@@ -58,7 +58,9 @@ const EmployeeTypeFrom = () => {
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="employeeType">Employee Type</label>
+                <label htmlFor="employeeType">
+                  <sup className="star">*</sup>Employee Type
+                </label>
                 <Field
                   component="select"
                   name="employeeType"
@@ -80,7 +82,7 @@ const EmployeeTypeFrom = () => {
               </div>
               <div>
                 <label htmlFor="department_name" className="px-2">
-                  Department
+                  <sup className="star">*</sup> Department
                 </label>
                 <Field
                   type="text"
@@ -106,6 +108,13 @@ const EmployeeTypeFrom = () => {
                 Create Employee Type
               </button>
               <Toaster position="top-right" />
+              <Link
+                className="btn-custom mt-2"
+                style={{ textDecoration: "none", height: "30px" }}
+                to={`/hr/employeeTypes/`}
+              >
+                Back
+              </Link>
             </Form>
           </>
         )}

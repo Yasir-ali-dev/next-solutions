@@ -22,7 +22,7 @@ const EmployeeGradeEdit = () => {
         values
       );
       if (response.status === 200) {
-        toast.success("Employee Grade is edited successfully");
+        toast.success("Employee scale is edited successfully");
       }
       setTimeout(() => {
         navigate("/hr/employeeGrades/");
@@ -41,7 +41,7 @@ const EmployeeGradeEdit = () => {
         `http://localhost:8080/api/v1/employeeGrades/${id}`
       );
       if (response.status === 200) {
-        toast.success("Employee Grade is deleted successfully");
+        toast.success("Employee scale is deleted successfully");
       }
       setTimeout(() => {
         navigate("/hr/employeeGrades/");
@@ -55,10 +55,10 @@ const EmployeeGradeEdit = () => {
   };
 
   return (
-    <div className="ubuntu">
+    <div className="ubuntu bg" style={{ height: "100vh" }}>
       <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">
-          Employee Type {employeeGradeObject.employee_grade}
+          Employee Scale {employeeGradeObject.employee_grade}
         </h4>
       </div>
       <Formik
@@ -68,24 +68,25 @@ const EmployeeGradeEdit = () => {
           const errors = {};
           if (!values.employee_grade) {
             errors.employee_grade = "employee grade is required";
-          } else if (!values.designation) {
-            errors.designation = "designation is required";
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           handleEmployeeGradeEdit(values);
+          setSubmitting(true);
         }}
       >
         {({ isSubmitting }) => (
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="employeeType">Employee Type</label>
+                <label htmlFor="employee_grade">
+                  <sup className="star">*</sup>Employee Scale
+                </label>
                 <Field
                   component="select"
-                  name="employeeType"
+                  name="employee_grade"
                   className="px-1 mx-2 form-width py-2"
                 >
                   {employeeGrades.map((value, index) => {
@@ -114,19 +115,14 @@ const EmployeeGradeEdit = () => {
                 />
               </div>
               <div>
-                <label htmlFor="designation" className="px-2">
-                  Designation
+                <label htmlFor="description" className="px-2">
+                  Description
                 </label>
                 <Field
                   type="text"
-                  name="designation"
-                  placeholder="Enter your designation "
+                  name="description"
+                  placeholder="Enter your description "
                   className="py-2 px-1 mx-2 form-width"
-                />
-                <ErrorMessage
-                  name="designation"
-                  component="div"
-                  className="text-danger"
                 />
               </div>
               <div className="d-flex gap-5 justify-content-between">
@@ -145,7 +141,7 @@ const EmployeeGradeEdit = () => {
       </Formik>
       <div className="d-flex gap-3 justify-content-center">
         <button
-          className="btn btn-danger btn-sm my-1 mt-2"
+          className="btn-custom-light my-1 mt-2"
           onClick={handleDeleteEmployeeGrade}
         >
           Delete
@@ -153,8 +149,9 @@ const EmployeeGradeEdit = () => {
         <Toaster position="top-right" />
 
         <Link
+          className="btn-custom mt-2"
+          style={{ textDecoration: "none", height: "30px" }}
           to={`/hr/employeeGrades/`}
-          className="btn-outline-primary bt-sm pt-1 fs-4"
         >
           Back
         </Link>

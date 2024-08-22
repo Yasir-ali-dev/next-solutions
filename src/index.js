@@ -18,6 +18,15 @@ import EmployeeGradeEdit from "./Employee/EmployeeGrades/EmployeeGradeEdit";
 import WorkCalenderContainer from "./Employee/WorkCalender/WorkCalenderContainer";
 import WorkCalenderForm from "./Employee/WorkCalender/WorkCalenderForm";
 import WorkCalenderEdit from "./Employee/WorkCalender/WorkCalenderEdit";
+import PayElementConatiner from "./Employee/EmployeePayElement/PayElementContainer";
+import PayElementForm from "./Employee/EmployeePayElement/PayElementForm";
+import PayElementEdit from "./Employee/EmployeePayElement/PayElementEdit";
+import { Nav, NavDropdown } from "react-bootstrap";
+import EmployeeJobsContainer from "./Employee/EmployeeJobs/EmployeeJobsContainer";
+import EmployeeJobsForm from "./Employee/EmployeeJobs/EmployeeJobsForm";
+import EmployeeJobsEdit from "./Employee/EmployeeJobs/EmployeeJobsEdit";
+import PerFormanceCriteriaContainer from "./Employee/PerformanceCriteria/PerFormanceCriteriaContainer";
+import PerformanceCriteriaForm from "./Employee/PerformanceCriteria/PerFormanceCriteriaForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -56,6 +65,32 @@ root.render(
         element={<WorkCalenderForm />}
       />
       <Route path="/hr/workCalenders/:id" element={<WorkCalenderEdit />} />
+
+      {/* employee pay element type */}
+      <Route path="/hr/employeePayElements" element={<PayElementConatiner />} />
+      <Route
+        path="/hr/employeePayElements/employeePayElementForm"
+        element={<PayElementForm />}
+      />
+      <Route path="/hr/employeePayElements/:id" element={<PayElementEdit />} />
+
+      {/* employee jobs */}
+      <Route path="/hr/employeeJobs" element={<EmployeeJobsContainer />} />
+      <Route
+        path="/hr/employeeJobs/employeeJobForm"
+        element={<EmployeeJobsForm />}
+      />
+      <Route path="/hr/employeeJobs/:id" element={<EmployeeJobsEdit />} />
+
+      {/* employee PerFormance Criteria */}
+      <Route
+        path="/hr/employeePerFormanceCriteria"
+        element={<PerFormanceCriteriaContainer />}
+      />
+      <Route
+        path="/hr/employeePerFormanceCriteria/PerFormanceCriteriaForm"
+        element={<PerformanceCriteriaForm />}
+      />
 
       {/* not found handler */}
       <Route path="*" element={<PageNotFoundComponent />} />

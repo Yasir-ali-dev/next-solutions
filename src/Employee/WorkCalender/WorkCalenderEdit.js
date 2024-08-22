@@ -9,6 +9,7 @@ const WorkCalenderEdit = () => {
   const [workCalenderObject, setWorkCalenderObject] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log(workCalender);
 
   useEffect(() => {
     setWorkCalenderObject(workCalender);
@@ -55,7 +56,7 @@ const WorkCalenderEdit = () => {
   };
 
   return (
-    <div className="ubuntu">
+    <div className="ubuntu bg" style={{ height: "100vh" }}>
       <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">
           Work Calender {workCalenderObject.employeeType}
@@ -79,7 +80,9 @@ const WorkCalenderEdit = () => {
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="work_calender">Work Calender </label>
+                <label htmlFor="work_calender">
+                  <sup className="star">*</sup>Work Calender{" "}
+                </label>
                 <Field
                   type="text"
                   name="work_calender"
@@ -130,7 +133,7 @@ const WorkCalenderEdit = () => {
       </Formik>
       <div className="d-flex gap-3 justify-content-center">
         <button
-          className="btn btn-danger btn-sm"
+          className="btn-custom-light my-1 mt-2"
           onClick={handleDeleteWorkCalender}
         >
           Delete

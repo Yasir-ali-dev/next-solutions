@@ -1,55 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { employeeTypes } from "../../utils/employeeData";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-const EmployeeTypeEdit = () => {
-  const { employeeType } = useLocation().state;
-  const [employeeTypeObject, setEmployeeTypeObject] = useState({});
+const EmployeeJobsEdit = () => {
+  const { employeeJob } = useLocation().state;
+  const [employeeJobObject, setEmployeeJobObject] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setEmployeeTypeObject(employeeType);
+    console.log(employeeJob);
+
+    setEmployeeJobObject(employeeJob);
   }, []);
 
-  const handleEmployeeTypeEdit = async (values) => {
+  const handleEmployeeJobEdit = async (values) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/api/v1/employeeTypes/${id}`,
+        `http://localhost:8080/api/v1/employeeJobs/${id}`,
         values
       );
       if (response.status === 200) {
-        toast.success("Employee Type is edited successfully");
+        toast.success("Employee job is edited successfully");
       }
       setTimeout(() => {
-        navigate("/hr/employeeTypes/");
+        navigate("/hr/employeeJobs/");
       }, 2500);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
       setTimeout(() => {
-        navigate("/hr/employeeTypes/");
+        navigate("/hr/employeeJobs/");
       }, 2500);
     }
   };
 
-  const handleDeleteEmployeeType = async () => {
+  const handleDeleteEmployeeJob = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/v1/employeeTypes/${id}`
+        `http://localhost:8080/api/v1/employeeJobs/${id}`
       );
       if (response.status === 200) {
-        toast.success("Employee Type is deleted successfully");
+        toast.success("Employee job is deleted successfully");
       }
       setTimeout(() => {
-        navigate("/hr/employeeTypes/");
+        navigate("/hr/employeeJobs/");
       }, 2500);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
       setTimeout(() => {
-        navigate("/hr/employeeTypes/");
+        navigate("/hr/employeeJobs/");
       }, 2500);
     }
   };
@@ -57,80 +58,52 @@ const EmployeeTypeEdit = () => {
   return (
     <div className="ubuntu bg" style={{ height: "100vh" }}>
       <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
-        <h4 className="text-start">
-          Employee Type {employeeTypeObject.employeeType}
-        </h4>
+        <h4 className="text-start">Employee Job {employeeJobObject.job}</h4>
       </div>
       <Formik
-        initialValues={employeeType}
+        initialValues={employeeJob}
         enableReinitialize={true}
         validate={(values) => {
           const errors = {};
-          if (!values.employeeType) {
-            errors.employeeType = "employee type is required";
-          } else if (!values.department_name) {
-            errors.department_name = "department name is required";
+          if (!values.job) {
+            errors.job = "employee job is required";
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          handleEmployeeTypeEdit(values);
+          handleEmployeeJobEdit(values);
+          setSubmitting(true);
         }}
       >
         {({ isSubmitting }) => (
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="employeeType">
-                  <sup className="star">*</sup>Employee Type
-                </label>
-                <Field
-                  component="select"
-                  name="employeeType"
-                  className="px-1 mx-2 form-width py-2"
-                >
-                  {employeeTypes.map((value, index) => {
-                    if (index === 0) {
-                      return (
-                        <option value={employeeType.employeeType} key={index}>
-                          {employeeType.employeeType}
-                        </option>
-                      );
-                    } else {
-                      return (
-                        <option value={value} key={index}>
-                          {value}
-                        </option>
-                      );
-                    }
-                  })}
-                </Field>
-                <ErrorMessage
-                  name="employeeType"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div>
-                <label htmlFor="department_name" className="px-2">
-                  <sup className="star">*</sup>Department
+                <label htmlFor="job">
+                  <sup className="star">* </sup> Employee Job
                 </label>
                 <Field
                   type="text"
-                  name="department_name"
-                  placeholder="Enter your department name"
-                  className="py-2 px-1 mx-2 form-width"
+                  name="job"
+                  className="px-1 mx-2 form-width py-2"
                 />
                 <ErrorMessage
-                  name="department_name"
+                  name="job"
                   component="div"
                   className="text-danger"
                 />
               </div>
               <div>
-                <label>is active </label>
-                <Field className="mx-3" type="checkbox" name="is_active" />
+                <label htmlFor="description" className="px-2">
+                  Description
+                </label>
+                <Field
+                  type="text"
+                  name="description"
+                  placeholder="Enter your description "
+                  className="py-2 px-1 mx-2 form-width"
+                />
               </div>
               <div className="d-flex gap-5 justify-content-between">
                 <button
@@ -149,7 +122,7 @@ const EmployeeTypeEdit = () => {
       <div className="d-flex gap-3 justify-content-center">
         <button
           className="btn-custom-light my-1 mt-2"
-          onClick={handleDeleteEmployeeType}
+          onClick={handleDeleteEmployeeJob}
         >
           Delete
         </button>
@@ -158,7 +131,7 @@ const EmployeeTypeEdit = () => {
         <Link
           className="btn-custom mt-2"
           style={{ textDecoration: "none", height: "30px" }}
-          to={`/hr/employeeTypes/`}
+          to={`/hr/employeeGrades/`}
         >
           Back
         </Link>
@@ -167,4 +140,4 @@ const EmployeeTypeEdit = () => {
   );
 };
 
-export default EmployeeTypeEdit;
+export default EmployeeJobsEdit;

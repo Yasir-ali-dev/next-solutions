@@ -14,8 +14,12 @@
 li{
   font-size: 1rem;
 }
+.bg{
+  background-color: #F4F7FA;
+}
 body {
   font-family: 'Roboto';
+  background-color: #F4F7FA;
 }
 
 label{
@@ -89,10 +93,12 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   z-index: -1;
   border-radius: 0.25em;
 }
-
+/* linear-gradient(-135deg, #1de9b6, #1dc4e9); */
 /* -------------------------------------- buttons  */
 .btn-custom {
-  background-color: #141E61; /* Custom background color */
+  /* background: linear-gradient(-135deg, #1de9b6, #1dc4e9); /* Darker  */
+  background-color:#1de9b6; /* Custom background color */
+  box-shadow:2px 2px 4px #697dfd ;
   border-radius:4px ;     /* Custom border color */
   color: white;
   border: none;              /* Custom text color */
@@ -101,9 +107,12 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 
 .btn-custom-light {
   background-color:white ; /* Custom background color */
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .2);
+  background-color:#a389d4; /* Custom background color */
+
   border-radius:4px ;     /* Custom border color */
-  color:  #141E61;
-  border:3px solid #141E61;              /* Custom text color */
+  color: white;
+  border:3px;              /* Custom text color */
   padding: 3px 13px ;
 }
 
@@ -121,13 +130,11 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 }
 
 .btn-custom-light:hover {
-  background-color: #01093a; /* Darker shade on hover */
-  color: white;
-  border: 3px solid #01093a;
+  box-shadow: 3px 3px 5px linear-gradient(-135deg, #899fd4, #a389d4);;
 }
 
 .btn-custom:hover {
-  background-color: #01093a; /* Darker shade on hover */
+  background-color: linear-gradient(-135deg, #1de9b6, #1dc4e9); /* Darker shade on hover */
 }
 
 
@@ -164,7 +171,6 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   width: 300px; /* Adjust width here */
   border: 1px solid rgb(221, 244, 252);
   border-radius: 5px;
-  background-color: rgb(249, 251, 252);
 }
 
 
@@ -172,14 +178,13 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   width: 290px; /* Adjust width here */
   border: 1px solid rgb(221, 244, 252);
   border-radius: 5px;
-  background-color: rgb(249, 251, 252);
+
 }
 
 .form-width-xs{
   width: 260px; /* Adjust width here */
   border: 1px solid rgb(221, 244, 252);
   border-radius: 5px;
-  background-color: rgb(249, 251, 252);
 }
 
 
@@ -228,7 +233,8 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 /*     ---------------------------- employee header functionality */
 
 .form-heading-color{
-  background-color: #D1E9F6;
+  background-color: #3f4d67;
+  color: #fff;
   
 }
 
@@ -238,11 +244,12 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 
 .search-button-style{
   border: none;
-  background-color: #D1E9F6;
+  background:
+  linear-gradient(-135deg, #1de9b6, #1dc4e9);
 }
 
 .search-button-style:hover{ 
-  transform: scaleY(1.1);
+  box-shadow: 3px 3px 5px   linear-gradient(-135deg, #02e0a9, #046b83);;
 }
 
 .form-btn-custom{
@@ -265,7 +272,10 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 /* -------------------------- router Link style */
 .router-link{
   text-decoration:none;
-  color: #01093a;
+  color: rgba(255, 255, 255, 0.925);
+  font-weight: 300;
+  font-size: .88rem;
+
 }
 .router-link-btn{
   text-decoration:none;

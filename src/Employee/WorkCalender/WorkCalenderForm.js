@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const WorkCalenderForm = () => {
@@ -35,7 +35,7 @@ const WorkCalenderForm = () => {
   };
 
   return (
-    <div className="ubuntu">
+    <div className="ubuntu bg" style={{ height: "100vh" }}>
       <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">Work Calender Form</h4>
       </div>
@@ -57,7 +57,9 @@ const WorkCalenderForm = () => {
           <>
             <Form className="d-flex gap-2 flex-column justify-content-center align-items-center py-3">
               <div>
-                <label htmlFor="work_calender">Work Calender </label>
+                <label htmlFor="work_calender">
+                  <sup className="star">*</sup>Work Calender{" "}
+                </label>
                 <Field
                   type="text"
                   name="work_calender"
@@ -102,6 +104,13 @@ const WorkCalenderForm = () => {
                 Create Work Calender
               </button>
               <Toaster position="top-right" />
+              <Link
+                to={`/hr/workCalenders/`}
+                className="btn-custom my-1 mt-2"
+                style={{ textDecoration: "none" }}
+              >
+                Back
+              </Link>
             </Form>
           </>
         )}
