@@ -30,9 +30,10 @@ const PerFormanceCriteriaContainer = () => {
 
   const handleSearch = () => {
     setRenderPerformanceCriterias((prevState) =>
-      prevState.filter((_, index) => _.type.includes(search))
+      prevState.filter((_, index) => _.name.includes(search))
     );
   };
+  console.log(performanceCriterias);
 
   const handleReset = () => {
     setRenderPerformanceCriterias(performanceCriterias);
@@ -59,7 +60,7 @@ const PerFormanceCriteriaContainer = () => {
                     type="text"
                     id="search"
                     size="sm"
-                    placeholder="Search by Performance Type"
+                    placeholder="Search by Performance Criteria"
                     className="form-field"
                     onChange={(e) => setSearch(e.target.value)}
                   />
@@ -100,7 +101,15 @@ const PerFormanceCriteriaContainer = () => {
                   <Link
                     to={`/hr/employeePerFormanceCriteria/:${_._id}`}
                     className="router-link-btn btn-custom"
-                    state={{ employeePerFormanceCriteria: _ }}
+                    state={{
+                      employeePerformanceCriteria: {
+                        type: _.type,
+                        name: _.name,
+                        criteria: _.criteria,
+                        total: _.total,
+                        is_group: _.is_group,
+                      },
+                    }}
                   >
                     Edit
                   </Link>

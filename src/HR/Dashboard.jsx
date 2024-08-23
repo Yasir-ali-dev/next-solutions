@@ -23,6 +23,10 @@ const Dashboard = () => {
                 <Link className='router-link' to={"/hr/employeeJobs"}>Employee Jobs</Link>
                 <Link className='router-link' to={"/hr/employeePerFormanceCriteria"}>Performance Criteria</Link>
                 
+                <Link className='router-link' to={"/hr/employeeDesignations"}>Designations </Link>
+                   
+                <Link className='router-link' to={"/hr/employeeSalaries"}>Employee Salary</Link>
+                   
             </Nav>
         </Navbar>
         <div className='d-flex flex-column'> 

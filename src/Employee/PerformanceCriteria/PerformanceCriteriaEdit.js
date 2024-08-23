@@ -1,35 +1,48 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 import { Form } from "react-bootstrap";
 
-const PerformanceCriteriaForm = () => {
-  const [performanceCriteria, setPerformanceCriteria] = useState({
-    type: "prohibition period",
-    name: "",
-    criteria: "",
-    total: Number,
-    is_group: false,
-  });
+const PerformanceCriteriaEdit = () => {
+  const { employeePerformanceCriteria } = useLocation().state;
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const handlePerformanceCriteria = async (event) => {
-    event.preventDefault();
+  const [performanceCriteria, setPerformanceCriteria] = useState(
+    employeePerformanceCriteria
+  );
+  console.log(performanceCriteria);
+
+  const handlePerformanceCriteriaEdit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/employeePerFormanceCriteria",
+      const response = await axios.patch(
+        `http://localhost:8080/api/v1/employeePerFormanceCriteria/${id}`,
         performanceCriteria
       );
-      console.log(response.data);
-
-      const newPerformance = response.data.newEmployeePerFormanceCriteria;
-      if (response.status === 201) {
-        toast.success(`${newPerformance.name} is created `);
+      if (response.status === 200) {
+        toast.success("Performance Criteria is edited successfully");
       }
       setTimeout(() => {
         navigate("/hr/employeePerFormanceCriteria/");
-      }, [2500]);
+      }, 2500);
+    } catch (error) {
+      toast.error(`${error.response.data.message}`);
+    }
+  };
+
+  const handleDeletePerformanceCriteria = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/v1/employeePerFormanceCriteria/${id}`
+      );
+      if (response.status === 200) {
+        toast.success("Performance Criteria is deleted successfully");
+      }
+      setTimeout(() => {
+        navigate("/hr/employeePerFormanceCriteria/");
+      }, 2500);
     } catch (error) {
       toast.error(`${error.response.data.message}`);
     }
@@ -46,12 +59,12 @@ const PerformanceCriteriaForm = () => {
   };
 
   return (
-    <div className="ubuntu ">
-      <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center   form-heading-color">
+    <div className="ubuntu bg" style={{ height: "100vh" }}>
+      <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
         <h4 className="text-start">Employee Performance Criteria</h4>
       </div>
       <Form
-        onSubmit={handlePerformanceCriteria}
+        onSubmit={handlePerformanceCriteriaEdit}
         className="d-flex gap-4 mx-5 flex-wrap justify-content-evenly align-items-center py-3"
       >
         <div className="d-flex ">
@@ -126,20 +139,33 @@ const PerformanceCriteriaForm = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn-custom my-1 mx-5 mt-2" type="submit">
-          Create Performance Criteria
+        <div className="d-flex gap-5 justify-content-between">
+          <button type="submit" className="btn-custom my-1 mt-2">
+            Apply Changes
+          </button>
+          <Toaster position="top-right" />
+        </div>
+      </Form>
+
+      <div className="d-flex gap-3 justify-content-center">
+        <button
+          className="btn-custom-light my-1 mt-2"
+          onClick={handleDeletePerformanceCriteria}
+        >
+          Delete
         </button>
         <Toaster position="top-right" />
+
         <Link
           className="btn-custom mt-2"
           style={{ textDecoration: "none", height: "30px" }}
-          to={`/hr/employeePerFormanceCriteria/`}
+          to={`/hr/employeeTypes/`}
         >
           Back
         </Link>
-      </Form>
+      </div>
     </div>
   );
 };
 
-export default PerformanceCriteriaForm;
+export default PerformanceCriteriaEdit;
