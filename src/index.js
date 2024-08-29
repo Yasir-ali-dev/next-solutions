@@ -36,6 +36,9 @@ import EmployeeSalaryEdit from "./Employee/EmployeeSalary/EmployeeSalaryEdit";
 import PerformanceEvaluationForm from "./Employee/PerformanceEvaluation/PerformanceEvaluationForm";
 import PerformanceEvaluationContainer from "./Employee/PerformanceEvaluation/PerformanceEvaluationContainer";
 import PerformanceEvaluationEdit from "./Employee/PerformanceEvaluation/PerformanceEvaluationEdit";
+import TimeAttendenceRegister from "./Attendence/TimeAttendenceRegister/TimeAttendenceRegister";
+import TimeAttendencePrint from "./Attendence/TimeAttendenceRegister/TimeAttendencePrint";
+import LeaveApplicationContainer from "./Attendence/EmployeeLeaveApplication/LeaveApplicationContainer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -134,6 +137,21 @@ root.render(
       <Route
         path="hr/employeePerFormanceEvaluations/:id"
         element={<PerformanceEvaluationEdit />}
+      />
+
+      {/*  */}
+
+      <Route
+        path="/hr/timeAttendenceRegister"
+        element={<TimeAttendenceRegister />}
+      />
+      <Route
+        path="/hr/timeAttendenceRegister/attendencePrint"
+        element={<TimeAttendencePrint />}
+      />
+      <Route
+        path="/hr/employeeLeaveApplication/"
+        element={<LeaveApplicationContainer />}
       />
 
       {/* not found handler */}

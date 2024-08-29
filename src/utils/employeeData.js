@@ -503,3 +503,5 @@ export const workingStatuses = [
   "Terminated",
 ];
 export const employeeGrades = ["high-level", "middle-level", "low-level"];
+
+export const locations = ["head office", "branch"];
