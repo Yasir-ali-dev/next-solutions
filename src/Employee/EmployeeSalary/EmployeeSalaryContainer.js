@@ -6,11 +6,11 @@ import TableLength from "../../components/TableLength";
 import TableHeadComponent from "../../components/TableHeadComponent";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
 
 const EmployeeSalaryContainer = () => {
   const [employeeSalaries, setEmployeeSalaries] = useState([]);
-  const [usernames, setUsernames] = useState([]);
+  const [renderEmployeeSalaries, setRenderEmployeeSalaries] = useState([]);
+  const [search, setSearch] = useState("");
   const fetchEmployees = async () => {
     try {
       const response = await axios.get(
@@ -18,35 +18,20 @@ const EmployeeSalaryContainer = () => {
       );
       const data = response.data;
       setEmployeeSalaries(data.employeeSalaries);
-      const ids = [];
-      data.employeeSalaries.forEach((element) => {
-        ids.push(element.employeeInfo);
-      });
-      ids.map(async (id) => {
-        try {
-          const response = await axios.get(
-            "http://localhost:8080/api/v1/employeesInfo/"
-          );
-          response.data.allEmployeesInfo.map((emp) => {
-            setUsernames((prev) => [...prev, emp.username]);
-            return emp.username;
-          });
-        } catch (error) {
-          console.error(error.response.data);
-        }
-      });
+      setRenderEmployeeSalaries(data.employeeSalaries);
     } catch (error) {
       console.error(error.response.data);
     }
   };
+
   useEffect(() => {
     fetchEmployees();
   }, []);
 
   const handleSearch = () => {
-    // setRenderEmployeeSalaries((prevState) =>
-    //   prevState.filter((_, index) => _.designation.includes(search))
-    // );
+    setRenderEmployeeSalaries((prevState) =>
+      prevState.filter((_, index) => _.employeeInfo.includes(search))
+    );
   };
 
   return (
@@ -63,6 +48,9 @@ const EmployeeSalaryContainer = () => {
             placeholder={"Employee"}
             data={employeeSalaries}
             colSpan={8}
+            setRender={setRenderEmployeeSalaries}
+            handleSearch={handleSearch}
+            setSearch={setSearch}
             headings={[
               "Edit",
               "Employee",
@@ -76,29 +64,31 @@ const EmployeeSalaryContainer = () => {
             ]}
           />
           <tbody>
-            {employeeSalaries.map((salary, index) => (
+            {renderEmployeeSalaries.map((salary, index) => (
               <tr key={`${index}}`}>
                 <td>
                   <Link
-                    to={`/hr/employeeSalaries/${salary._id}`}
+                    to={`/hr/employeeSalaries/:${salary._id}`}
                     className="router-link-btn btn-custom"
-                    state={{ employeeSalary: salary }}
+                    state={{ EmployeeSalary: salary }}
                   >
                     Edit
                   </Link>
                 </td>
-                <td>{usernames[index]}</td>
+                <td>{salary.employeeInfo}</td>
                 <td>{salary.currentSalary}</td>
                 <td>{salary.newSalary}</td>
                 <td>{salary.changeAmount}</td>
                 <td>{salary.changePercentage}</td>
-                <td>{salary.effectiveFromDate.slice(0, 10)}</td>
                 <td>{salary.creationDate.slice(0, 10)}</td>
+                <td>
+                  {salary.effectiveFromDate &&
+                    salary.effectiveFromDate.slice(0, 10)}
+                </td>
                 <td>{salary.lastIncrementId}</td>
               </tr>
             ))}
-
-            <TableLength colSpan="9" length={employeeSalaries.length} />
+            <TableLength colSpan="9" length={renderEmployeeSalaries.length} />
           </tbody>
         </Table>
       </div>

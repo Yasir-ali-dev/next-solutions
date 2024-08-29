@@ -495,4 +495,11 @@ export const employeeTypes = [
   "At-will",
 ];
 
+export const payrolls = ["Daily Wages", "Hourly Wages", "Monthly Payroll"];
+export const workingStatuses = [
+  "Working",
+  "Freezed",
+  "Transferred",
+  "Terminated",
+];
 export const employeeGrades = ["high-level", "middle-level", "low-level"];

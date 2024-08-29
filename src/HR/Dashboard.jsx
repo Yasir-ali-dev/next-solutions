@@ -15,18 +15,18 @@ const Dashboard = () => {
     <div>
         <Navbar className='roboto form-heading-color px-3' >
             <Navbar.Brand >Human Resource</Navbar.Brand>
-            <Nav className="d-flex px-5 justify-content-center gap-4" >
+            <Nav className="d-flex px-3 justify-content-center gap-3" >
+                <Link className='router-link' to={"/hr/employees"}>Employees</Link>
                 <Link className='router-link' to={"/hr/employeeTypes"}>  Employee Types</Link>
                 <Link className='router-link' to={"/hr/employeeGrades"}>Employee Scale</Link>
                 <Link className='router-link' to={"/hr/workCalenders"}>Work Calenders</Link>
-                <Link className='router-link' to={"/hr/employeePayElements"}>Pay Elements</Link>
+                <Link className='router-link' to={"/hr/employeeDesignations"}>Designations </Link>
                 <Link className='router-link' to={"/hr/employeeJobs"}>Employee Jobs</Link>
                 <Link className='router-link' to={"/hr/employeePerFormanceCriteria"}>Performance Criteria</Link>
-                
-                <Link className='router-link' to={"/hr/employeeDesignations"}>Designations </Link>
-                   
+                <Link className='router-link' to={"/hr/employeePayElements"}>Pay Elements</Link>
                 <Link className='router-link' to={"/hr/employeeSalaries"}>Employee Salary</Link>
-                   
+                <Link className='router-link' to={"/hr/employeePerFormanceEvaluations/"}>PerFormance Evaluations</Link>
+                
             </Nav>
         </Navbar>
         <div className='d-flex flex-column'> 

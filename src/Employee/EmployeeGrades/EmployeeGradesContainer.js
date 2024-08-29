@@ -75,7 +75,7 @@ const EmployeeGradesContainer = () => {
               </th>
             </tr>
             <tr>
-              {["Edit", "Employee Grade", "Designation"].map((_, index) => (
+              {["Edit", "Employee Grade", "Description"].map((_, index) => (
                 <th key={index}>{_}</th>
               ))}
             </tr>

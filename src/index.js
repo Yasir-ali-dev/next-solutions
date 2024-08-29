@@ -21,7 +21,6 @@ import WorkCalenderEdit from "./Employee/WorkCalender/WorkCalenderEdit";
 import PayElementConatiner from "./Employee/EmployeePayElement/PayElementContainer";
 import PayElementForm from "./Employee/EmployeePayElement/PayElementForm";
 import PayElementEdit from "./Employee/EmployeePayElement/PayElementEdit";
-import { Nav, NavDropdown } from "react-bootstrap";
 import EmployeeJobsContainer from "./Employee/EmployeeJobs/EmployeeJobsContainer";
 import EmployeeJobsForm from "./Employee/EmployeeJobs/EmployeeJobsForm";
 import EmployeeJobsEdit from "./Employee/EmployeeJobs/EmployeeJobsEdit";
@@ -33,6 +32,10 @@ import EmployeeDesignationForm from "./Employee/EmployeeDesignation/EmployeeDesi
 import EmployeeDesignationEdit from "./Employee/EmployeeDesignation/EmployeeDesignationEdit";
 import EmployeeSalaryContainer from "./Employee/EmployeeSalary/EmployeeSalaryContainer";
 import EmployeeSalaryForm from "./Employee/EmployeeSalary/EmployeeSalaryForm";
+import EmployeeSalaryEdit from "./Employee/EmployeeSalary/EmployeeSalaryEdit";
+import PerformanceEvaluationForm from "./Employee/PerformanceEvaluation/PerformanceEvaluationForm";
+import PerformanceEvaluationContainer from "./Employee/PerformanceEvaluation/PerformanceEvaluationContainer";
+import PerformanceEvaluationEdit from "./Employee/PerformanceEvaluation/PerformanceEvaluationEdit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -46,6 +49,7 @@ root.render(
       <Route path="/hr/employees" element={<EmployeeList />} />
       <Route path="/hr/employees/employeeform" element={<EmployeeForm />} />
       <Route path="/hr/employees/:id" element={<EmployeeDetails />} />
+
       {/* employee types */}
       <Route path="/hr/employeeTypes/" element={<EmployeeTypesContainer />} />
       <Route
@@ -107,15 +111,31 @@ root.render(
         path="/hr/employeeDesignations/:id"
         element={<EmployeeDesignationEdit />}
       />
+      {/* salary */}
       <Route
         path="/hr/employeeSalaries/"
         element={<EmployeeSalaryContainer />}
       />
-      employeeSalaries/employeeSalaryForm
       <Route
         path="/hr/employeeSalaries/employeeSalaryForm"
         element={<EmployeeSalaryForm />}
       />
+      <Route path="/hr/employeeSalaries/:id" element={<EmployeeSalaryEdit />} />
+
+      {/* Performance Evaluation */}
+      <Route
+        path="/hr/employeePerFormanceEvaluations/"
+        element={<PerformanceEvaluationContainer />}
+      />
+      <Route
+        path="/hr/employeePerFormanceEvaluations/employeePerFormanceEvaluationForm"
+        element={<PerformanceEvaluationForm />}
+      />
+      <Route
+        path="hr/employeePerFormanceEvaluations/:id"
+        element={<PerformanceEvaluationEdit />}
+      />
+
       {/* not found handler */}
       <Route path="*" element={<PageNotFoundComponent />} />
     </Routes>

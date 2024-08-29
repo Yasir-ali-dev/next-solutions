@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { Form } from "react-bootstrap";
 import EmployeeHeader from "../../components/EmployeeHeader";
@@ -14,7 +14,6 @@ const EmployeeDesignationEdit = () => {
   const [employeeDesignations, setEmployeeDesignations] = useState({
     designation: designation,
   });
-  console.log(designation);
 
   const handleEditEmployeeDesignation = async (e) => {
     e.preventDefault();
@@ -29,6 +28,7 @@ const EmployeeDesignationEdit = () => {
       setTimeout(() => {
         navigate("/hr/employeeDesignations/");
       }, 2500);
+      return;
     } catch (error) {
       toast.error(`${error.response.data.message}`);
     }
@@ -45,6 +45,7 @@ const EmployeeDesignationEdit = () => {
       setTimeout(() => {
         navigate("/hr/employeeDesignations/");
       }, 2500);
+      return;
     } catch (error) {
       toast.error(`${error.response.data.message}`);
     }
@@ -82,10 +83,33 @@ const EmployeeDesignationEdit = () => {
             />
           </div>
         </div>
-        <FormEditButtonsComponent
-          handleDelete={handleDeleteEmployeeDesignation}
-          renderTo={"/hr/employeeDesignations"}
-        />
+
+        <div className="d-flex gap-3 align-items-center justify-content-center">
+          <div>
+            <button type="submit" className="btn-custom my-1 mt-2">
+              Apply Changes
+            </button>
+            <Toaster position="top-right" />
+          </div>
+
+          <div className="d-flex gap-3 justify-content-center">
+            <button
+              type="button"
+              className="btn-custom-light my-1 mt-2"
+              onClick={handleDeleteEmployeeDesignation}
+            >
+              Delete
+            </button>
+            <Toaster position="top-right" />
+            <Link
+              className="btn-custom mt-2 py-1 my-1"
+              style={{ textDecoration: "none", height: "30px" }}
+              to={"/hr/employeeDesignations"}
+            >
+              Back
+            </Link>
+          </div>
+        </div>
       </Form>
     </div>
   );

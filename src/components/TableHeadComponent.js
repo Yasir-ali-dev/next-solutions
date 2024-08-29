@@ -27,7 +27,7 @@ const TableHeadComponent = ({
             </button>
           </div>
         </th>
-        <th colSpan={2}>
+        <th colSpan={colSpan}>
           <button
             className="ms-auto router-link-btn btn-custom"
             onClick={() => setRender(data)}

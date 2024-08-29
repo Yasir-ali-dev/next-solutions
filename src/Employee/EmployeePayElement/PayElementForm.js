@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import EmployeeHeader from "../../components/EmployeeHeader";
 
 const PayElementForm = () => {
   const [payElement, setPayElement] = useState({
@@ -64,9 +65,12 @@ const PayElementForm = () => {
   };
   return (
     <div className="ubuntu ">
-      <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center   form-heading-color">
-        <h4 className="text-start">Employee Type Form</h4>
-      </div>
+      <EmployeeHeader
+        btnText={"Back"}
+        renderTo={"/hr/employeePayElements"}
+        title={"Employee Pay Element"}
+      />
+
       <form className="d-flex gap-4 flex-wrap justify-content-evenly align-items-center py-3">
         <div className="d-flex ">
           <label htmlFor="element_type">

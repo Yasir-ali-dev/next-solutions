@@ -139,7 +139,7 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
 
 
 .bg-color{
-  background-color: #141E61;
+  background-color: #301b5c;
 }
 
 .circle-img {
@@ -274,7 +274,7 @@ font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
   text-decoration:none;
   color: rgba(255, 255, 255, 0.925);
   font-weight: 300;
-  font-size: .88rem;
+  font-size: .78rem;
 
 }
 .router-link-btn{

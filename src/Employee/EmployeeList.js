@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Image, Pagination } from "react-bootstrap";
 import "../index.css";
 import { Link } from "react-router-dom";
-
-import { arrayOfEmployees } from "../utils/employeeData";
+import axios from "axios";
+import BackButton from "../components/BackButton";
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState(arrayOfEmployees);
+  const [employees, setEmployees] = useState([]);
+  const [allEmployees, setAllEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const totalPages = Math.max(1, Math.ceil(employees.length / itemsPerPage)); // Ensure
+  const totalPages = Math.max(1, Math.ceil(employees.length / itemsPerPage));
   const [paginatedItems, setPaginatedItems] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -20,6 +21,23 @@ const EmployeeList = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/employeesInfo/"
+      );
+      const data = response.data;
+      setEmployees(data.allEmployeesInfo);
+      setAllEmployees(data.allEmployeesInfo);
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
   useEffect(() => {
     setPaginatedItems(
@@ -54,7 +72,7 @@ const EmployeeList = () => {
         })
       );
     } else if (order === "clear") {
-      setEmployees(arrayOfEmployees);
+      setEmployees(allEmployees);
     }
     setCurrentPage(1); // Reset to the first page when sorting changes
   };
@@ -74,20 +92,14 @@ const EmployeeList = () => {
 
   const handleSearch = () => {
     console.log(search);
-    const employeeWithSearchName = employees.filter(
-      (employee) => employee.name.toLowerCase() == search.toLowerCase()
+    const employeeWithSearchName = employees.filter((employee) =>
+      employee.name.toLowerCase().includes(search.toLowerCase())
     );
     if (employeeWithSearchName.length < 1) {
     }
     setEmployees(employeeWithSearchName);
     setCurrentPage(1);
   };
-
-  if (employees.length < 1) {
-    setTimeout(() => {
-      setEmployees(arrayOfEmployees);
-    }, 2000);
-  }
 
   return (
     <div className="ubuntu">
@@ -100,7 +112,7 @@ const EmployeeList = () => {
           Create Employee
         </Link>
       </div>
-      <div className="form-heading-color mt-1 p-1 ms-md-5">
+      <div className="form-heading-color mt-1 p-1 ms-md-3">
         <div className="d-flex justify-content-center align-items-center gap-2">
           <Form.Select
             onChange={handleSelectChange}
@@ -141,7 +153,7 @@ const EmployeeList = () => {
           <div className="w-50 py-1 d-flex justify-content-end gap-2">
             <button
               className="btn-custom text-center"
-              onClick={() => setEmployees(arrayOfEmployees)}
+              onClick={() => setEmployees(allEmployees)}
             >
               Clear Search
             </button>
@@ -164,7 +176,8 @@ const EmployeeList = () => {
                   <Card.Header style={{ backgroundColor: "#c1e6fa" }}>
                     <Link
                       className="router-link d-flex align-items-center justify-content-between"
-                      to={`/hr/employees/${employee.id}`}
+                      to={`/hr/employees/:${employee._id}`}
+                      state={{ employeeDetails: employee }}
                     >
                       <h5>{employee.name}</h5>
                       <Image src="/person.png" width="35px" />
@@ -183,8 +196,11 @@ const EmployeeList = () => {
               );
             })}
           </div>
-          <div className="d-flex py-2 justify-content-center">
+          <div className="d-flex py-2 flex-column justify-content-center align-items-center">
             <Pagination size="sm">{paginationItems}</Pagination>
+            <Link to={"/hr"} className="router-link-btn btn-custom">
+              Back
+            </Link>
           </div>
         </>
       )}

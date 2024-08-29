@@ -3,11 +3,13 @@ import axios from "axios";
 import { Form, Image, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BackButton from "../../components/BackButton";
+import EmployeeHeader from "../../components/EmployeeHeader";
 
 const PayElementConatiner = () => {
   const [payElements, setPayElements] = useState([]);
   const [renderPayElements, setRenderPayElements] = useState([]);
   const [search, setSearch] = useState("");
+  const [employees, setEmployees] = useState([]);
 
   const fetchPayElement = async () => {
     try {
@@ -15,7 +17,6 @@ const PayElementConatiner = () => {
         "http://localhost:8080/api/v1/employeePayElements/"
       );
       const data = response.data;
-      console.log(data);
       setPayElements(data.employeePayElement);
       setRenderPayElements(data.employeePayElement);
     } catch (error) {
@@ -40,15 +41,11 @@ const PayElementConatiner = () => {
 
   return (
     <div className="ubuntu bg" style={{ height: "100vh" }}>
-      <div className="py-1 px-2 mb-2 d-flex justify-content-between align-items-center  form-heading-color">
-        <h4 className="text-start">Employee Pay Elements</h4>
-        <Link
-          to="/hr/employeePayElements/employeePayElementForm"
-          className="router-link-btn btn-custom-light"
-        >
-          Create Pay Element
-        </Link>
-      </div>
+      <EmployeeHeader
+        btnText={"Employee Pay Elements"}
+        renderTo="/hr/employeePayElements/employeePayElementForm"
+        title={"Create Pay Element"}
+      />
       <BackButton to={"hr"} />
       <div className="px-3">
         <Table responsive hover>
@@ -84,6 +81,7 @@ const PayElementConatiner = () => {
             <tr className="py-1">
               {[
                 "Edit",
+                "Employee",
                 "Pay Element Type",
                 "Processing Type",
                 "Entry Type",
@@ -101,16 +99,20 @@ const PayElementConatiner = () => {
                   <Link
                     to={`/hr/employeePayElements/:${_._id}`}
                     className="router-link-btn btn-custom"
-                    state={{ payElementObj: _ }}
+                    state={{
+                      payElementObj: _,
+                      username: _.employeeInfo,
+                    }}
                   >
                     Edit
                   </Link>
                 </td>
+                <td>{_.employeeInfo}</td>
                 <td>{_.element_type}</td>
                 <td>{_.processing_type}</td>
                 <td>{_.entry_type}</td>
-                <td>{_.start_date}</td>
-                <td>{_.end_date}</td>
+                <td>{_.start_date.slice(0, 10)}</td>
+                <td>{_.end_date.slice(0, 10)}</td>
               </tr>
             ))}
             <tr className="py-2">

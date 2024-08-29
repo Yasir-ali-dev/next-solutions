@@ -17,7 +17,6 @@ const FormEditButtonsComponent = ({ handleDelete, renderTo }) => {
           Delete
         </button>
         <Toaster position="top-right" />
-
         <Link
           className="btn-custom mt-2 py-1 my-1"
           style={{ textDecoration: "none", height: "30px" }}

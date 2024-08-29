@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const PayElementEdit = () => {
-  const { payElementObj } = useLocation().state;
+  const { payElementObj, username } = useLocation().state;
   const navigate = useNavigate();
   const [employeeUsername, setEmployeeUsername] = useState({});
 
@@ -20,24 +20,6 @@ const PayElementEdit = () => {
     const day = ("0" + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
-
-  useEffect(() => {
-    fetchEmployees();
-  }, []);
-
-  const fetchEmployees = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/employeesInfo/:${payElementObj.employeeInfo}`
-      );
-
-      const data = response.data;
-
-      setEmployeeUsername(data.employeeInformation.username);
-    } catch (error) {
-      console.error(error.response.data);
-    }
-  };
 
   const handlePayElementForm = async (values) => {
     try {
@@ -116,7 +98,7 @@ const PayElementEdit = () => {
                   placeholder="Enter element_type"
                   className="py-2 px-1 mx-2 form-width"
                   disabled
-                  value={employeeUsername}
+                  value={username}
                 />
               </div>
 

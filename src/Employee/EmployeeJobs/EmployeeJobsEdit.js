@@ -11,8 +11,6 @@ const EmployeeJobsEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(employeeJob);
-
     setEmployeeJobObject(employeeJob);
   }, []);
 

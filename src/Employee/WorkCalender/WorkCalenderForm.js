@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const WorkCalenderForm = () => {
   const initialValues = {
-    work_calender: "full-time",
+    work_calender: "",
     days_per_week: Number,
     work_hours_per_day: Number,
   };
